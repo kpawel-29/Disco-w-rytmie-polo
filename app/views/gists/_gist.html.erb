@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="row">
+  <h4>&nbsp;&nbsp;&nbsp;&nbsp;gist number: <%= gist.id %><small>  <%= gist.description %></small></h4>
+  <h4>&nbsp;&nbsp;&nbsp;&nbsp;lang: <%= gist.lang %></h4>
+  <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;created: <%= gist.created_at %></h6>
+  <div class="snippet">
+      <%= raw Pygments.highlight(gist.snippet.length > 100 ? gist.snippet[0,100] + "..." : gist.snippet, lexer: gist.lang) %>
+  </div>
+
+
+    <tr>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to t('.show', :default => t("helpers.links.show")),
+                    gist_path(gist), :class => 'btn btn-success' %>
+
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_gist_path(gist), :class => 'btn' %>
+
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          gist_path(gist),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-danger' %></tr><br><br>
+    </div>
+</div>
