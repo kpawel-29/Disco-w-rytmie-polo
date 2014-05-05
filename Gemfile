@@ -34,3 +34,7 @@ group :assets do
   gem 'uglifier', '>= 1.3.0'
   gem 'bootstrap-sass', '~> 2.0.3.1'
 end
+
+group :production do
+  gem 'shelly-dependencies'
+end
