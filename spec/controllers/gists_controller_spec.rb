@@ -1,5 +1,4 @@
-require "spec_helper"
-
+require 'spec_helper'
 
 describe GistsController do
   describe "GET #index" do
@@ -8,4 +7,5 @@ describe GistsController do
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
+  end
 end
