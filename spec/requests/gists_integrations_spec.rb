@@ -14,7 +14,18 @@ describe "GistsIntegrations" do
     page.should have_selector("h1", text: "Gists")
   end
 
+
+
+  it "should have navbar on all pages" do
+    visit root_path
+    expect(page).to have_css "div.navbar"
+    visit gists_search_path
+    expect(page).to have_css "div.navbar"
+    visit new_gist_path
+    expect(page).to have_css "div.navbar"
+  end
 end
+
 
 =begin
 feature "Gist management" do
