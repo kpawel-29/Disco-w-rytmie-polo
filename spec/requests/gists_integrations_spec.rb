@@ -8,4 +8,26 @@ describe "GistsIntegrations" do
       response.status.should be(200)
     end
   end
+
+  it "index page should have title in h1 selector" do
+    visit root_path
+    page.should have_selector("h1", text: "Gists")
+  end
+
 end
+
+=begin
+feature "Gist management" do
+  scenario "User creates a new gist" do
+    visit "/gists/new"
+
+    fill_in "Snippet", :with => "My Snippet"
+    fill_in "Lang"
+    click_button "Create Gist"
+
+    expect(page).to have_text("Gist was successfully created.")
+  end
+end
+
+=end
+
