@@ -39,6 +39,18 @@ feature "Gist management" do
     expect(page).to have_text("Gist was successfully created.")
 
   end
+
+  scenario "User update a gist" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit edit_gist_path('1')
+
+    fill_in "Snippet", :with => "Coś"
+    find("#gist_lang").select("css")
+    fill_in "Description", :with => "Some description"
+    click_button "Update Gist"
+
+    current_path.should == gist_path('1')
+    expect(page).to have_text("Gist was successfully updated.")
+
+  end
 end
-
-
