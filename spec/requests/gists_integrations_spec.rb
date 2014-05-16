@@ -71,11 +71,10 @@ feature "Gist management" do
     page.should have_selector("h1", text: "Edit Gist")
   end
 
-  it "check textarea and input with data to edit in #edit" do
+  it "check textarea with data to edit in #edit" do
     @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
     visit edit_gist_path('1')
-    page.should have_content(@gist.snippet)
-    #page.should have_content(@gist.description)
+    page.should have_selector("textarea", :text => @gist.snippet)
   end
 
   it "check header in #new page" do
@@ -90,5 +89,12 @@ feature "Gist management" do
     page.should have_selector("select")
   end
 
+  it "check delete action at #index page" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit root_path
+    page.should have_content(@gist.snippet)
+    click_link 'Delete'
+    page.should have_no_content(@gist.snippet)
+  end
 end
 
