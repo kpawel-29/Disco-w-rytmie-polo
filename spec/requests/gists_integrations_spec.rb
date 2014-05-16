@@ -71,6 +71,12 @@ feature "Gist management" do
     page.should have_selector("h1", text: "Edit Gist")
   end
 
+  it "check if pagination is displayed at #index page" do
+    20.times do @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something") end
+    visit gists_path
+    page.should have_selector 'div.pagination'
+  end
+
   it "check textarea with data to edit in #edit" do
     @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
     visit edit_gist_path('1')
@@ -96,5 +102,49 @@ feature "Gist management" do
     click_link 'Delete'
     page.should have_no_content(@gist.snippet)
   end
+
+  it "check #index page display buttons show,edit,delete correct" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit root_path
+    page.should have_selector 'a.btn', :text => 'Show'
+    page.should have_selector 'a.btn', :text => 'Edit'
+    page.should have_selector 'a.btn', :text => 'Delete'
+  end
+
+  it "chceck if #index page display pagination correct" do
+    20.times do @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something") end
+    visit gists_path
+    page.has_selector? 'div.container-fluid', :count => 10
+  end
+
+  it "check if select search displays correct" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    @gist2 = Gist.create(snippet: "The title", lang: "c", description: "Desc something")
+    visit root_path
+    page.should have_selector 'option', :count => 2
+  end
+  #. dodaje 2 te same jezyki, klika search i sprawdza czy content zawiera 2 rekordy
+  it "check if search work correct" do
+    2.times do @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something") end
+    pending("tu coś nie wchodzi, wtf?")
+    click_link 'Search'
+    page.has_content? ''
+  end
+
+  #. dodaje do bazy i sprawdza czy po nacisnieciu delete pojawia się alert
+  it "check if after click delete button, alert is displayed" do
+      pending("no tego nie wiem jak obsłużyć, chyba do wywalenia ten test")
+  end
+
+  #. zabronić dodawania gistow bez snippeta i bez description (not by empty)
+  it "check adding gist with empty snippet" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    pending("something........")
+  end
+
+  it "check adding gist with empty description" do
+    pending("something else getting finished")
+  end
+
 end
 
