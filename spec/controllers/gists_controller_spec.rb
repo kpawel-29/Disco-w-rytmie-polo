@@ -33,20 +33,21 @@ describe GistsController do
     end
   end
 
-=begin
   describe "GET #edit" do
     it "responds successfully edit page" do
-      get :edit
+      @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+      visit edit_gist_path(@gist)
       expect(response).to be_success
       expect(response.status).to eq(200)
     end
 
+
     it "renders the edit template" do
-      get :edit
+      @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+      visit edit_gist_path(@gist)
       expect(response).to render_template("edit")
     end
   end
-=end
 
   describe "GET #search" do
     it "responds successfully search page" do
