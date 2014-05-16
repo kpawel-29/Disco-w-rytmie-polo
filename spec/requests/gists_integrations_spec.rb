@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "GistsIntegrations" do
   describe "GET /gists_integrations" do
     it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       get root_path
       response.status.should be(200)
     end
@@ -22,8 +21,6 @@ describe "GistsIntegrations" do
     visit new_gist_path
     expect(page).to have_css "div.navbar"
   end
-
-
 end
 
 feature "Gist management" do
@@ -51,6 +48,47 @@ feature "Gist management" do
 
     current_path.should == gist_path('1')
     expect(page).to have_text("Gist was successfully updated.")
-
   end
+
+  it "check displayed buttons after visit #show" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit gist_path('1')
+    expect(page).should have_css("a.btn", :text => 'Back')
+    expect(page).should have_css("a.btn", :text => 'Edit')
+    expect(page).should have_css("a.btn", :text => 'Delete')
+  end
+
+  it "check displayed snippet in <pre> tag" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit gist_path('1')
+    expect(page).should have_selector("pre>span.nt")#, :text => @gist.snippet)
+    expect(page).should have_content(@gist.snippet)
+  end
+
+  it "check header in #edit page" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit edit_gist_path('1')
+    page.should have_selector("h1", text: "Edit Gist")
+  end
+
+  it "check textarea and input with data to edit in #edit" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit edit_gist_path('1')
+    page.should have_content(@gist.snippet)
+    #page.should have_content(@gist.description)
+  end
+
+  it "check header in #new page" do
+    visit new_gist_path
+    page.should have_selector("h1", text: "New Gist")
+  end
+
+  it "check #new page have textarea, select and input" do
+    visit new_gist_path
+    page.should have_selector("input")
+    page.should have_selector("textarea")
+    page.should have_selector("select")
+  end
+
 end
+
