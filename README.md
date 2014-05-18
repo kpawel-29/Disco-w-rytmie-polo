@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kpawel-29/Disco-w-rytmie-polo.svg?branch=master)](https://travis-ci.org/kpawel-29/Disco-w-rytmie-polo)
+
 Disco-w-rytmie-polo
 ===================
 Skład zespołu
