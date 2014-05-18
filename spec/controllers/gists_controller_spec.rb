@@ -18,7 +18,8 @@ describe GistsController do
       get :index
       expect(assigns(:gists)).to match_array([gist1, gist2])
     end
-  end
+
+end
 
   describe "GET #new" do
     it "responds successfully new gist page" do
@@ -31,6 +32,7 @@ describe GistsController do
       get :new
       expect(response).to render_template("new")
     end
+
   end
 
   describe "GET #edit" do
@@ -41,11 +43,18 @@ describe GistsController do
       expect(response.status).to eq(200)
     end
 
-
     it "renders the edit template" do
       @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
       visit edit_gist_path(@gist)
       expect(response).to render_template("edit")
+    end
+#. sprawdzic czy jest zabronione update na puste description lub snippet - 2 oddzielne testy
+    it "check editing field description to empty" do
+      pending("something else getting finished")
+    end
+
+    it "check editing field snippet to empty" do
+      pending("something else getting finished")
     end
   end
 
@@ -60,6 +69,8 @@ describe GistsController do
       get :search
       expect(response).to render_template("search")
     end
+
   end
+
 
 end
