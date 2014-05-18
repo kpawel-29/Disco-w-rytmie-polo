@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/kpawel-29/Disco-w-rytmie-polo.svg?branch=master)](https://travis-ci.org/kpawel-29/Disco-w-rytmie-polo)
+<pre>Deadline oddawania projektu przesunięty na 24.05</pre>
 
 Disco-w-rytmie-polo
 ===================
