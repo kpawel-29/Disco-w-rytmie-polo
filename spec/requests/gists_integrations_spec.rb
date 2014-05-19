@@ -50,12 +50,12 @@ feature "Gist management" do
     expect(page).to have_text("Gist was successfully updated.")
   end
 
-  it "check displayed buttons after visit #show" do
+  it "check displayed buttons after visit #show without login" do
     @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
     visit gist_path('1')
     expect(page).should have_css("a.btn", :text => 'Back')
-    expect(page).should have_css("a.btn", :text => 'Edit')
-    expect(page).should have_css("a.btn", :text => 'Delete')
+    expect(page).should have_no_content('Edit')
+    expect(page).should have_no_content('Delete')
   end
 
   it "check displayed snippet in <pre> tag" do
