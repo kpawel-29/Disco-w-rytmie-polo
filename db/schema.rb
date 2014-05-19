@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140518210903) do
     t.text     "snippet"
     t.string   "lang"
     t.string   "description"
+    t.string   "autor"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
