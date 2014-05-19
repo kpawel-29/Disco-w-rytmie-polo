@@ -46,4 +46,5 @@ group :test do
   gem 'guard-rspec'
 end
 
-gem 'omniauth-facebook'
+gem 'omniauth'
+gem 'omniauth-facebook', '1.4.0'
