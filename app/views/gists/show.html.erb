@@ -23,8 +23,9 @@
   <dd><%= @gist.lang %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @gist.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:autor) %>:</strong></dt>
+  <dd><%= @gist.autor %></dd>
   <dt><strong><%= model_class.human_attribute_name(:snippet) %>:</strong></dt>
-  
 
   <dd><%= raw Pygments.highlight(@gist.snippet, lexer: @gist.lang.downcase) %></dd>
   
