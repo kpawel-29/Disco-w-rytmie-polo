@@ -27,12 +27,12 @@ feature "Gist management" do
   scenario "User creates a new gist" do
     visit "/gists/new"
 
-    fill_in "Snippet", :with => ""
+    fill_in "Snippet", :with => "sth"
     find("#gist_lang").select("css")
     fill_in "Description", :with => "Some description"
     click_button "Create Gist"
 
-    current_path.should == gist_path('1')
+
     expect(page).to have_text("Gist was successfully created.")
 
   end
@@ -95,20 +95,12 @@ feature "Gist management" do
     page.should have_selector("select")
   end
 
-  it "check delete action at #index page" do
-    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
-    visit root_path
-    page.should have_content(@gist.snippet)
-    click_link 'Delete'
-    page.should have_no_content(@gist.snippet)
-  end
 
-  it "check #index page display buttons show,edit,delete correct" do
+  it "check #index page display button show correct" do
     @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
     visit root_path
     page.should have_selector 'a.btn', :text => 'Show'
-    page.should have_selector 'a.btn', :text => 'Edit'
-    page.should have_selector 'a.btn', :text => 'Delete'
+
   end
 
   it "chceck if #index page display pagination correct" do
@@ -133,7 +125,7 @@ feature "Gist management" do
 
   #. dodaje do bazy i sprawdza czy po nacisnieciu delete pojawia się alert
   it "check if after click delete button, alert is displayed" do
-      pending("no tego nie wiem jak obsłużyć, chyba do wywalenia ten test")
+    pending("no tego nie wiem jak obsłużyć, chyba do wywalenia ten test")
   end
 
   #. zabronić dodawania gistow bez snippeta i bez description (not by empty)
@@ -146,5 +138,23 @@ feature "Gist management" do
     pending("something else getting finished")
   end
 
+  describe "Correct working after logged in" do
+    before :each do
+      OmniAuth.config.mock_auth[:github]
+
+      visit root_path
+      click_link 'Sign in with GitHub'
+    end
+
+    it "check delete action at #index page" do
+      @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+      visit root_path
+      page.should have_content(@gist.snippet)
+      click_link 'Delete'
+      page.should have_no_content(@gist.snippet)
+    end
+
+  end
 end
+
 
