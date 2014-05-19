@@ -11,6 +11,6 @@ class SessionsController < ApplicationController
   end
 
   def failure
-
   end
+
 end
