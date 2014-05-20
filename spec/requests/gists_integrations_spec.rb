@@ -123,19 +123,22 @@ feature "Gist management" do
     page.has_content? ''
   end
 
-  #. dodaje do bazy i sprawdza czy po nacisnieciu delete pojawia się alert
-  it "check if after click delete button, alert is displayed" do
-    pending("no tego nie wiem jak obsłużyć, chyba do wywalenia ten test")
-  end
 
   #. zabronić dodawania gistow bez snippeta i bez description (not by empty)
   it "check adding gist with empty snippet" do
     @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
-    pending("something........")
+    visit edit_gist_path(@gist)
+    fill_in "Snippet", :with => ""
+    click_button 'Update Gist'
+    current_path.should_not == root_path
   end
 
   it "check adding gist with empty description" do
-    pending("something else getting finished")
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit edit_gist_path(@gist)
+    fill_in "Description", :with => ""
+    click_button 'Update Gist'
+    current_path.should_not == root_path
   end
 
   describe "Correct working after logged in" do
