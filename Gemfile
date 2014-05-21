@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 =begin
 ruby '2.1.1'
 =end
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.1'
 
 gem 'will_paginate'
 gem 'betterlorem'
