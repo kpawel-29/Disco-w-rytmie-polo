@@ -21,10 +21,6 @@ ActiveRecord::Schema.define(version: 20140518210903) do
     t.datetime "updated_at"
   end
 
-  create_table "langs", force: true do |t|
-    t.string "name"
-  end
-
   create_table "users", force: true do |t|
     t.string   "provider"
     t.string   "uid"
