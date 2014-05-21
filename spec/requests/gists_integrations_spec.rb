@@ -141,6 +141,7 @@ feature "Gist management" do
     current_path.should_not == root_path
   end
 
+=begin
   describe "Correct working after logged in" do
     before :each do
       OmniAuth.config.mock_auth[:github]
@@ -158,6 +159,7 @@ feature "Gist management" do
     end
 
   end
+=end
 end
 
 
