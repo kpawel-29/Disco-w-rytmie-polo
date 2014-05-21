@@ -27,10 +27,6 @@ ActiveRecord::Schema.define(version: 20140521111726) do
     t.string   "autor"
   end
 
-  create_table "langs", force: true do |t|
-    t.string "name"
-  end
-
   create_table "users", force: true do |t|
     t.string   "provider"
     t.string   "uid"
