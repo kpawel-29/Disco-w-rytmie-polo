@@ -56,9 +56,9 @@ to be effective.</p>
 
 
 7.times do
-  Gist.create(snippet: @php,  lang: 'php', description: 'php function');
-  Gist.create(snippet: @python, lang: 'python', description: 'python example');
+  Gist.create(snippet: @php,  lang: 'php', description: 'php function', autor: 'anonim');
+  Gist.create(snippet: @python, lang: 'python', description: 'python example', autor: 'anonim');
 
-  Gist.create(snippet: @css, lang: 'html', description: 'html example');
+  Gist.create(snippet: @css, lang: 'html', description: 'html example', autor: 'anonim');
 
 end
