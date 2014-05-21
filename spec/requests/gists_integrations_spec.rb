@@ -127,13 +127,36 @@ feature "Gist management" do
   #. zabronić dodawania gistow bez snippeta i bez description (not by empty)
   it "check adding gist with empty snippet" do
     @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit "/gists/new"
+
+    fill_in "Snippet", :with => ""
+    find("#gist_lang").select("css")
+    fill_in "Description", :with => "Some description"
+    click_button 'Create Gist'
+    current_path.should_not == root_path
+end
+
+  it "check adding gist with empty description" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
+    visit "/gists/new"
+
+    fill_in "Snippet", :with => "Coś"
+    find("#gist_lang").select("css")
+    fill_in "Description", :with => ""
+    click_button 'Create Gist'
+    current_path.should_not == root_path
+  end
+
+  #. sprawdzic czy jest zabronione update na puste description lub snippet - 2 oddzielne testy
+  it "check editing gist to empty snippet" do
+    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
     visit edit_gist_path(@gist)
     fill_in "Snippet", :with => ""
     click_button 'Update Gist'
     current_path.should_not == root_path
   end
 
-  it "check adding gist with empty description" do
+  it "check editing gist to empty description" do
     @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
     visit edit_gist_path(@gist)
     fill_in "Description", :with => ""

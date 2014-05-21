@@ -50,15 +50,7 @@ end
       visit edit_gist_path(@gist)
       expect(response).to render_template("edit")
     end
-#. sprawdzic czy jest zabronione update na puste description lub snippet - 2 oddzielne testy
-    it "check editing field description to empty" do
-      pending("something else getting finished")
-    end
 
-    it "check editing field snippet to empty" do
-      pending("something else getting finished")
-    end
-  end
 
   describe "GET #search" do
     it "responds successfully search page" do
@@ -73,6 +65,5 @@ end
     end
 
   end
-
-
-end
+  end
+  end
