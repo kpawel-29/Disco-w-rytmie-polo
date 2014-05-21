@@ -12,12 +12,3 @@ class CreateUsers < ActiveRecord::Migration
     end
   end
 end
-
-class CreateAuthorizations < ActiveRecord::Migration
-  def change
-    create_table :authorizations do |t|
-
-      t.timestamps
-    end
-  end
-end
