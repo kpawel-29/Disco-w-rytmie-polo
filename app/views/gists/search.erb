@@ -1,72 +1,72 @@
 <%
-allowed = Pygments.lexers.flatten.select.with_index{|a,i| (i+1) % 2 == 0}
-allowed = allowed.map{|a| a[:aliases][0]}
-allowed = allowed.sort
+   allowed = Pygments.lexers.flatten.select.with_index{|a,i| (i+1) % 2 == 0}
+   allowed = allowed.map{|a| a[:aliases][0]}
+   allowed = allowed.sort
 %>
 
 <h2>Find gists</h2>
 <hr/>
 
 </div>
- <!--  <tbody> -->
-    <div class="col-6 col-sm-6 col-lg-4">
-    <div class="row">
+<!--  <tbody> -->
+<div class="col-6 col-sm-6 col-lg-4">
+  <div class="row">
     <% @gists.each do |gist| %>
-      <tr class="info">
-        <div class="thumbnail">
-        
-       <%= raw Pygments.highlight(gist.snippet.length > 100 ? gist.snippet[0,100] + "..." : gist.snippet, lexer: gist.lang) %>
-        <div class="caption">
-       <!-- <%= gist.snippet%> -->
-       <div class="col-md-1">Lang: <%= gist.lang %></div>
-        
-       <div class="col-md-1">Description: <%= gist.description %></div>
-       <div class="col-md-1">Date: <%= gist.date %></div>
-      <div class="col-md-1"> <%= link_to 'Show', gist, class:'btn btn-default' %>
-        <%= link_to 'Edit', edit_gist_path(gist), class:'btn btn-default' %>
-        <%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default' %>
-        </div>
-        </div>
-        </div>
-      </tr>
+        <tr class="info">
+          <div class="thumbnail">
+
+            <%= raw Pygments.highlight(gist.snippet.length > 100 ? gist.snippet[0,100] + "..." : gist.snippet, lexer: gist.lang) %>
+            <div class="caption">
+              <!-- <%= gist.snippet%> -->
+              <div class="col-md-1">Lang: <%= gist.lang %></div>
+
+              <div class="col-md-1">Description: <%= gist.description %></div>
+              <div class="col-md-1">Date: <%= gist.date %></div>
+              <div class="col-md-1"> <%= link_to 'Show', gist, class:'btn btn-default' %>
+                <%= link_to 'Edit', edit_gist_path(gist), class:'btn btn-default' %>
+                <%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default' %>
+              </div>
+            </div>
+          </div>
+        </tr>
     <% end %>
-<!--   </tbody>
-</table> -->
-</div>
-
-<% if(@gists.length > 0) %>
-<h3>Results</h3>
-<hr/>
-
-
-
-<table class="indexTable">
+    <!--   </tbody>
+    </table> -->
   </div>
- <!--  <tbody> -->
-    <div class="col-6 col-sm-6 col-lg-4">
-    <div class="row">
-    <% @gists.each do |gist| %>
-      <tr class="info">
-        <div class="thumbnail">
-        
-       <%= raw Pygments.highlight(gist.snippet.length > 100 ? gist.snippet[0,100] + "..." : gist.snippet, lexer: gist.lang) %>
-        <div class="caption">
-       <!-- <%= gist.snippet%> -->
-       <div class="col-md-1">Lang: <%= gist.lang %></div>
-        
-       <div class="col-md-1">Description: <%= gist.description %></div>
-       <div class="col-md-1">Date: <%= gist.date %></div>
-      <div class="col-md-1"> <%= link_to 'Show', gist, class:'btn btn-default' %>
-        <%= link_to 'Edit', edit_gist_path(gist), class:'btn btn-default' %>
-        <%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default' %>
+
+  <% if(@gists.length > 0) %>
+      <h3>Results</h3>
+      <hr/>
+
+
+
+      <table class="indexTable">
+      </div>
+      <!--  <tbody> -->
+      <div class="col-6 col-sm-6 col-lg-4">
+        <div class="row">
+          <% @gists.each do |gist| %>
+              <tr class="info">
+                <div class="thumbnail">
+
+                  <%= raw Pygments.highlight(gist.snippet.length > 100 ? gist.snippet[0,100] + "..." : gist.snippet, lexer: gist.lang) %>
+                  <div class="caption">
+                    <!-- <%= gist.snippet%> -->
+                    <div class="col-md-1">Lang: <%= gist.lang %></div>
+
+                    <div class="col-md-1">Description: <%= gist.description %></div>
+                    <div class="col-md-1">Date: <%= gist.date %></div>
+                    <div class="col-md-1"> <%= link_to 'Show', gist, class:'btn btn-default' %>
+                      <%= link_to 'Edit', edit_gist_path(gist), class:'btn btn-default' %>
+                      <%= link_to 'Destroy', gist, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-default' %>
+                    </div>
+                  </div>
+                </div>
+              </tr>
+          <% end %>
+          <!--   </tbody>
+          </table> -->
         </div>
-        </div>
-        </div>
-      </tr>
-    <% end %>
-<!--   </tbody>
-</table> -->
-</div>
-<% else if(@gists.length == 0 && (params.has_key?(:lang) || params.has_key?(:desc))) %>
-<b>No results found.</b>
-<% end end %>
+  <% else if(@gists.length == 0 && (params.has_key?(:lang) || params.has_key?(:desc))) %>
+          <b>No results found.</b>
+      <% end end %>

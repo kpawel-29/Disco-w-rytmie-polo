@@ -27,7 +27,6 @@ class GistsController < ApplicationController
   # GET /gists/new
   def new
     @gist = Gist.new
-
   end
 
   # GET /gists/1/edit
@@ -38,6 +37,7 @@ class GistsController < ApplicationController
   # POST /gists.json
   def create
     @gist = Gist.new(gist_params)
+
     respond_to do |format|
       if @gist.save
         format.html { redirect_to @gist, notice: 'Gist was successfully created.' }
@@ -74,13 +74,13 @@ class GistsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_gist
-      @gist = Gist.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_gist
+    @gist = Gist.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def gist_params
-      params.require(:gist).permit(:snippet, :lang, :description)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def gist_params
+    params.require(:gist).permit(:snippet, :lang, :description)
+  end
 end

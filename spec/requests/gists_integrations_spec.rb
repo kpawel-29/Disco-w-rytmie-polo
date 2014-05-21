@@ -115,16 +115,18 @@ feature "Gist management" do
     visit root_path
     page.should have_selector 'option', :count => 2
   end
+=begin
   #. dodaje 2 te same jezyki, klika search i sprawdza czy content zawiera 2 rekordy
   it "check if search work correct" do
     2.times do @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something") end
-    pending("tu coś nie wchodzi, wtf?")
-    click_link 'Search'
+    #pending("tu coś nie wchodzi, wtf?")
+    visit root_path
+    click_button 'Search'
     page.has_content? ''
   end
 
+=end
 
-  #. zabronić dodawania gistow bez snippeta i bez description (not by empty)
   it "check adding gist with empty snippet" do
     @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
     visit "/gists/new"
@@ -164,7 +166,6 @@ end
     current_path.should_not == root_path
   end
 
-=begin
   describe "Correct working after logged in" do
     before :each do
       OmniAuth.config.mock_auth[:github]
@@ -181,8 +182,11 @@ end
       page.should have_no_content(@gist.snippet)
     end
 
+    it "check sign out link exist" do
+      visit root_path
+      page.should have_content 'Sign out'
+    end
   end
-=end
 end
 
 
