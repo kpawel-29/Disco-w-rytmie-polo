@@ -30,6 +30,7 @@ Jest to rozwinięta wersja aplikacji [My Gists](https://github.com/kpawel-29/my_
 Użyte dodatkowe gemy
 --
 
+ -   'rspec-rails'
  -   'shelly-dependencies'
  -   'factory_girl_rails'
  -   'capybara'
