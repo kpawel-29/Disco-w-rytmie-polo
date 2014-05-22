@@ -17,7 +17,6 @@ gem 'quiet_assets'
 gem 'twitter-bootstrap-rails'
 
 
-#gem 'railties' '~> 3.2.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
@@ -48,6 +47,6 @@ group :test do
   gem 'guard-rspec'
 end
 
-
+#gemy potrzebne do logowania przez fb i github'a
 gem 'omniauth-facebook'
 gem 'omniauth-github', '1.1.1'
