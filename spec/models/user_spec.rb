@@ -7,4 +7,7 @@ describe User do
       @user.should be_an_instance_of User
     end
   end
+
+
+
 end

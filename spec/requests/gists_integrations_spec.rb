@@ -115,20 +115,8 @@ feature "Gist management" do
     visit root_path
     page.should have_selector 'option', :count => 2
   end
-=begin
-  #. dodaje 2 te same jezyki, klika search i sprawdza czy content zawiera 2 rekordy
-  it "check if search work correct" do
-    2.times do @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something") end
-    #pending("tu coś nie wchodzi, wtf?")
-    visit root_path
-    click_button 'Search'
-    page.has_content? ''
-  end
-
-=end
 
   it "check adding gist with empty snippet" do
-    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
     visit "/gists/new"
 
     fill_in "Snippet", :with => ""
@@ -139,7 +127,6 @@ feature "Gist management" do
 end
 
   it "check adding gist with empty description" do
-    @gist = Gist.create(snippet: "The title", lang: "css", description: "Desc something")
     visit "/gists/new"
 
     fill_in "Snippet", :with => "Coś"
@@ -166,10 +153,16 @@ end
     current_path.should_not == root_path
   end
 
+
+  it "should have login option on #index page" do
+    visit root_path
+    page.should have_content 'Sign in'
+  end
+
+
   describe "Correct working after logged in" do
     before :each do
       OmniAuth.config.mock_auth[:github]
-
       visit root_path
       click_link 'Sign in with GitHub'
     end
@@ -186,6 +179,17 @@ end
       visit root_path
       page.should have_content 'Sign out'
     end
+
+    it "test user name after login " do
+      visit root_path
+      expect(page).should have_content 'Signed in as'
+
+    end
+
+    it "check user name after login" do
+      expect(User.name).not_to be_nil
+    end
+
   end
 end
 
