@@ -22,6 +22,15 @@
       <%= f.text_field :description, :class => 'text_field' %>
     </div>
   </div>
+    <div class="field">
+      <% if current_user %>
+          <%= f.label :Autor %>
+          <%= f.text_field :autor, placeholder: current_user.name, visiblity: 'hidden', value: current_user.name, readonly: true, style:'visibility:hidden;' %>
+      <% else %>
+          <%= f.label :Autor %>
+          <%= f.text_field :autor, placeholder: 'anonim', value: 'anonim', readonly:true, style:'visibility:hidden;' %>
+      <% end %>
+    </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

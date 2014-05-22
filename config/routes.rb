@@ -2,9 +2,7 @@ MyGists::Application.routes.draw do
   get "gists/search"
 
   resources :gists
-
-  root :to => "gists#index"
-
+  root 'gists#index'
 
   match '/auth/:provider/callback', :to => 'sessions#create',  via: [:get, :post]
   match '/auth/failure', :to => 'sessions#failure', via: [:get, :post]
