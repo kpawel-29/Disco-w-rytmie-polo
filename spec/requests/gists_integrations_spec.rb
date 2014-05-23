@@ -164,7 +164,7 @@ end
     before :each do
       OmniAuth.config.mock_auth[:github]
       visit root_path
-      click_link 'Sign in with GitHub'
+      click_link 'with GitHub'
     end
 
     it "check delete action at #index page" do
