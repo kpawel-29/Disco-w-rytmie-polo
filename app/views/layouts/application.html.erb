@@ -48,6 +48,17 @@
           <%= link_to t('.new', :default => t("helpers.links.new")),
                       new_gist_path, :position => 'center',
                       :class => 'btn btn-info' %>
+          <%
+             @gists = Gist.all
+             @allowed = Array.new
+             @gists.each do |gist|
+               @allowed << gist.lang
+             end
+             @allowed = @allowed.uniq
+          %>
+          <%= select_tag(:lang, options_for_select(@allowed))%>
+
+          <button type="submit" class="btn btn-default">Search</button>
 
 
           <form class="navbar-form navbar-left pull-right" role="search" action="/gists/search">
@@ -70,17 +81,7 @@
               <% end %>
             </div>
             <div class="form-group">
-              <%
-                 @gists = Gist.all
-                 @allowed = Array.new
-                 @gists.each do |gist|
-                 @allowed << gist.lang
-              end
-                 @allowed = @allowed.uniq
-              %>
-              <%= select_tag(:lang, options_for_select(@allowed))%>
 
-              <button type="submit" class="btn btn-default">Search</button>
             </div>
           </form>
           <!--facebook-->
